@@ -4,6 +4,17 @@ Mobilní stránka na měsíční samoodečty dvoutarifového elektroměru: stav 
 
 Běží jako Claude Artifact. Odečty ukládá do databáze artifactu a stav z fotky čte přes Clauda, takže stránka otevřená mimo Clauda (například přes GitHub Pages) data nenačte ani neuloží.
 
+## Ukázka
+
+<p>
+  <img src="docs/prehled.jpg" alt="Přehled se stavem elektroměru" width="200">
+  <img src="docs/graf.jpg" alt="Graf spotřeby po odečtech" width="200">
+  <img src="docs/odecty.jpg" alt="Seznam odečtů" width="200">
+  <img src="docs/investice.jpg" alt="Návratnost úsporných technologií" width="200">
+</p>
+
+Hodnoty na obrázcích jsou vymyšlené.
+
 ## Struktura
 
 | Soubor | Obsah |
@@ -18,5 +29,6 @@ Běží jako Claude Artifact. Odečty ukládá do databáze artifactu a stav z f
 | `js/state.js` | stav aplikace a výchozí nastavení |
 | `js/util.js` | formátování čísel a dat |
 | `icons/` | ikony |
+| `docs/` | obrázky do tohoto README |
 
 Bez build kroku, čisté ES moduly.
