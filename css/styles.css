@@ -972,7 +972,7 @@ body::after {
   letter-spacing: -0.01em;
 }
 
-#splash span {
+#splash > span {
   font-size: 13px;
   color: var(--muted);
   margin-top: -12px;
@@ -1362,7 +1362,7 @@ body::after {
   #splash b {
     animation: rise 500ms var(--ease-out) 120ms both;
   }
-  #splash span {
+  #splash > span {
     animation: rise 500ms var(--ease-out) 220ms both;
   }
   .app.first .top {
@@ -1691,5 +1691,34 @@ body::after {
 @keyframes growX {
   from {
     transform: scaleX(0);
+  }
+}
+
+.top h1 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 26px;
+  letter-spacing: -0.02em;
+}
+
+.top h1 img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  margin-left: -4px;
+}
+
+.top h1 b, #splash b span {
+  color: #23895c;
+}
+
+:root[data-theme="dark"] :is(.top h1 b, #splash b span) {
+  color: #a6e3b8;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) :is(.top h1 b, #splash b span) {
+    color: #a6e3b8;
   }
 }

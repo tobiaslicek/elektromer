@@ -1,4 +1,4 @@
-# Elektroměr doma
+# Elektroměr
 
 Mobilní stránka na měsíční samoodečty dvoutarifového elektroměru: stav z fotky, spotřeba a cena po obdobích, grafy, zálohy, výhled na 12 měsíců a orientační návratnost úsporných technologií.
 
