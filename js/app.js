@@ -135,14 +135,14 @@ export function renderTable(R, P) {
     }
     h += `<button class="card rrow" type="button" data-edit="${esc(r.date)}" aria-label="Upravit odečet z ${fmtDate(r.date, true)}">
       <span class="rr-top">
-        <span class="rr-date"><b>${d}</b><span>${MONTHS[m - 1]} ${y}</span></span>
+        <span class="rr-date"><b>${d}. ${m}.</b><span>${y}</span></span>
         <span class="rr-main">${p
-          ? `<span class="rr-kwh num">${nf(p.kwh)} <small>kWh</small></span><span class="rr-sub num">${kc(p.cost)} · ${p.days} dní · ${nf(p.perDay, 1)} kWh/den</span>`
+          ? `<span class="rr-kwh num">${nf(p.kwh)} <small>kWh</small></span><span class="rr-sub num"><b class="rr-cost">${kc(p.cost)}</b> · ${p.days} dní · ${nf(p.perDay, 1)} kWh/den</span>`
           : `<span class="rr-kwh">Výchozí stav</span><span class="rr-sub">První odečet, od něj se počítá.</span>`}</span>
         ${delta}
       </span>
       ${p ? `<span class="rr-bar" aria-hidden="true"><span style="width:${(p.d2 / max * 100).toFixed(1)}%;background:var(--t2)"></span><span style="width:${Math.max(p.d1 / max * 100, 0.8).toFixed(1)}%;background:var(--t1)"></span></span>` : ""}
-      <span class="rr-foot num"><span><i class="dot t1"></i>T1 ${nf(r.t1)}</span><span><i class="dot t2"></i>T2 ${nf(r.t2)}</span><span class="rr-edit">Upravit ›</span></span>
+      <span class="rr-foot num"><span><i class="dot t1"></i>T1 ${nf(r.t1)} kWh</span><span><i class="dot t2"></i>T2 ${nf(r.t2)} kWh</span><span class="rr-edit">Upravit ›</span></span>
     </button>`;
   }
   setHTML($("tbl"), h);
