@@ -51,10 +51,10 @@ body {
   font: 400 15px/1.45 var(--text);
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
-  padding-block: 14px 96px;
+  padding-block: 16px 40px;
   -webkit-text-size-adjust: 100%;
 }
-.app { max-width: 560px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+.app { max-width: 560px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
 h1, h2, h3 { font-family: var(--display); margin: 0; text-wrap: balance; }
 h1 { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; white-space: nowrap; }
 h2 { font-size: 16px; font-weight: 600; }
@@ -65,22 +65,22 @@ p { margin: 0; }
 .small { font-size: 13px; }
 .num { font-variant-numeric: tabular-nums; }
 
-.top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.top { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
 .top .next { font-size: 12px; color: var(--ink-2); text-align: right; }
 
-.view { display: flex; flex-direction: column; gap: 14px; }
+.view { display: flex; flex-direction: column; gap: 20px; }
 
-.register { background: var(--register); color: var(--register-ink); border-radius: 18px; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+.register { background: var(--register); color: var(--register-ink); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 16px; }
 .register .row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .register .tag { display: flex; flex-direction: column; min-width: 0; }
 .register .tag b { font: 600 15px var(--display); display: flex; align-items: center; gap: 7px; }
 .register .tag span { font-size: 12px; color: #9aa5b1; }
 .dot { width: 10px; height: 10px; border-radius: 3px; flex: none; display: inline-block; }
 .dot.t1 { background: var(--t1); } .dot.t2 { background: var(--t2); } .dot.fc { background: var(--forecast); }
-.digits { display: flex; gap: 3px; align-items: center; }
+.digits { display: flex; gap: 4px; align-items: center; }
 .digits i { font: 600 22px/1 var(--mono); font-style: normal; background: var(--register-cell); border-radius: 5px; padding: 7px 5px; min-width: 24px; text-align: center; }
 .digits em { font: 500 12px var(--mono); font-style: normal; color: #9aa5b1; margin-left: 5px; }
-.register .foot { font-size: 12px; color: #9aa5b1; border-top: 1px solid #2a343f; padding-top: 10px; display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.register .foot { font-size: 12px; color: #9aa5b1; border-top: 1px solid #2a343f; padding-top: 14px; display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
 
 .btn { font: 600 15px var(--text); border: 0; border-radius: 14px; padding: 14px 16px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 48px; color: var(--ink); background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); }
 .btn.primary { background: var(--signal); color: var(--signal-ink); box-shadow: none; width: 100%; font-size: 16px; }
@@ -88,93 +88,93 @@ p { margin: 0; }
 .btn.danger { color: var(--bad); }
 .btn:disabled { opacity: 0.5; cursor: default; }
 .btn:focus-visible, .tab:focus-visible, input:focus-visible, .seg button:focus-visible, .linkbtn:focus-visible { outline: 2px solid var(--t2); outline-offset: 2px; }
-.linkbtn { background: none; border: 0; padding: 8px 4px; font: 500 14px var(--text); color: var(--ink-2); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
-.actions { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.linkbtn { background: none; border: 0; padding: 10px 8px; font: 500 14px var(--text); color: var(--ink-2); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.actions { display: flex; flex-direction: column; align-items: center; gap: 8px; }
 
-.due { background: var(--signal); color: var(--signal-ink); border-radius: 14px; padding: 12px 14px; font-weight: 500; display: flex; gap: 10px; align-items: flex-start; }
+.due { background: var(--signal); color: var(--signal-ink); border-radius: 16px; padding: 16px 18px; font-weight: 500; display: flex; gap: 10px; align-items: flex-start; }
 .due b { font-family: var(--display); }
 
-.card { background: var(--surface); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.card { background: var(--surface); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
 .card-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
 .hero-figure { font: 700 38px/1 var(--display); letter-spacing: -0.02em; }
 .hero-figure small { font-size: 17px; font-weight: 600; color: var(--ink-2); letter-spacing: 0; }
 .hero-line { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-.delta { font-size: 13px; font-weight: 600; padding: 4px 9px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--line); color: var(--ink-2); white-space: nowrap; }
-.split { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.split > div { border-top: 1px solid var(--line); padding-top: 9px; min-width: 0; }
+.delta { align-self: flex-start; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--line); color: var(--ink-2); white-space: nowrap; }
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 20px; }
+.split > div { border-top: 1px solid var(--line); padding-top: 12px; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
 .split .k { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
 .split .v { font: 600 17px var(--display); }
 .split .s { font-size: 12px; color: var(--ink-2); }
 
-.seg { display: inline-flex; background: var(--bg); border-radius: 10px; padding: 3px; }
+.seg { display: inline-flex; background: var(--well); border-radius: 10px; padding: 3px; }
 .seg button { border: 0; background: transparent; color: var(--ink-2); font: 600 13px var(--text); padding: 6px 12px; border-radius: 8px; cursor: pointer; min-height: 32px; }
-.seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,0.12); }
-.legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12px; color: var(--ink-2); }
+.seg button[aria-pressed="true"] { background: var(--tab-on); color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,0.12); }
+.legend { display: flex; gap: 8px 16px; flex-wrap: wrap; font-size: 12px; color: var(--ink-2); }
 .legend span { display: inline-flex; align-items: center; gap: 6px; }
 .chart { width: 100%; min-width: 0; }
 .chart svg { display: block; width: 100%; height: auto; touch-action: pan-y; }
 .chart text { font: 500 11px var(--text); fill: var(--muted); font-variant-numeric: tabular-nums; }
 .chart text.val { fill: var(--ink); font-weight: 600; }
-.readout { font-size: 13px; color: var(--ink-2); min-height: 38px; border-top: 1px solid var(--line); padding-top: 9px; }
+.readout { font-size: 13px; color: var(--ink-2); min-height: 42px; line-height: 1.6; border-top: 1px solid var(--line); padding-top: 14px; }
 .readout b { color: var(--ink); }
 
-.tablewrap { overflow-x: auto; margin: 0 -16px; padding: 0 16px; }
+.tablewrap { overflow-x: auto; margin: 0 -20px; padding: 0 20px; }
 table { border-collapse: collapse; width: 100%; font-size: 13px; }
-th, td { text-align: right; padding: 9px 3px; border-bottom: 1px solid var(--line); white-space: nowrap; font-variant-numeric: tabular-nums; }
+th, td { text-align: right; padding: 12px 4px; border-bottom: 1px solid var(--line); white-space: nowrap; font-variant-numeric: tabular-nums; }
 th { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
 th:first-child, td:first-child { text-align: left; padding-left: 0; }
 td:last-child, th:last-child { padding-right: 0; }
 td .linkbtn { padding: 4px 0; font-size: 13px; }
 td.strong { font-weight: 600; }
 
-.tech { display: flex; flex-direction: column; gap: 10px; }
+.tech { display: flex; flex-direction: column; gap: 16px; }
 .tech-top { display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; }
-.tech-top p { font-size: 13px; color: var(--ink-2); }
+.tech-top p { font-size: 13px; color: var(--ink-2); margin-top: 4px; }
 .verdict { font-size: 12px; font-weight: 600; white-space: nowrap; display: inline-flex; align-items: center; gap: 6px; padding: 4px 9px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--line); }
 .verdict i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
 .verdict.good i { background: var(--good); } .verdict.warn i { background: var(--warn); border-radius: 2px; } .verdict.bad i { background: var(--bad); border-radius: 0; transform: rotate(45deg); }
-.payback { display: flex; flex-direction: column; gap: 5px; }
-.payback .track { height: 10px; border-radius: 5px; background: var(--bg); position: relative; overflow: hidden; }
+.payback { display: flex; flex-direction: column; gap: 8px; }
+.payback .track { height: 10px; border-radius: 5px; background: var(--well); position: relative; overflow: hidden; }
 .payback .fill { position: absolute; inset: 0 auto 0 0; background: var(--t2); border-radius: 5px; }
 .payback .life { position: absolute; top: 0; bottom: 0; width: 2px; background: var(--ink); }
 .payback .cap { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); }
-.facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-.facts div { min-width: 0; }
+.facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.facts div { min-width: 0; display: flex; flex-direction: column; gap: 3px; }
 .facts .k { font-size: 11px; color: var(--muted); }
 .facts .v { font: 600 14px var(--display); }
 details { font-size: 13px; color: var(--ink-2); }
-details summary { cursor: pointer; color: var(--ink-2); font-weight: 500; padding: 4px 0; }
-details p + p { margin-top: 6px; }
-ul.plain { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: var(--ink-2); }
-ol.plain { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: var(--ink-2); }
+details summary { cursor: pointer; color: var(--ink-2); font-weight: 500; padding: 6px 0; }
+details p { margin-top: 8px; }
+ul.plain { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 10px; font-size: 14px; line-height: 1.5; color: var(--ink-2); }
+ol.plain { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 10px; font-size: 14px; line-height: 1.5; color: var(--ink-2); }
 
-.field { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.field { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
 .field label { font-size: 13px; font-weight: 500; color: var(--ink-2); }
 .field input[type="number"], .field input[type="date"], .field input[type="text"] {
-  font: 600 17px var(--mono); padding: 12px; border-radius: 12px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); width: 100%; min-height: 48px;
+  font: 600 17px var(--mono); padding: 12px; border-radius: 12px; border: 1px solid var(--line); background: var(--well); color: var(--ink); width: 100%; min-height: 48px;
 }
 .field .hint { font-size: 12px; color: var(--muted); }
-.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.check { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.check { display: flex; gap: 12px; align-items: flex-start; font-size: 14px; line-height: 1.45; padding: 4px 0; }
 .check input { width: 20px; height: 20px; margin-top: 1px; flex: none; }
 
 .tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: var(--surface); border-top: 1px solid var(--line);
-  padding: 6px max(8px, env(safe-area-inset-right, 0px)) calc(6px + env(safe-area-inset-bottom, 0px)) max(8px, env(safe-area-inset-left, 0px)); }
+  padding: 8px max(12px, env(safe-area-inset-right, 0px)) calc(8px + env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px)); }
 .tabs div { max-width: 560px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
 .tab { border: 0; background: transparent; color: var(--muted); font: 600 12px var(--text); padding: 6px 2px; border-radius: 10px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 3px; min-height: 48px; }
 .tab svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-.tab[aria-current="page"] { color: var(--ink); background: var(--bg); }
+.tab[aria-current="page"] { color: var(--ink); background: var(--well); }
 
 .sheet-back { position: fixed; inset: 0; z-index: 30; background: rgba(8, 12, 18, 0.55); display: flex; align-items: flex-end; justify-content: center; }
 .sheet { background: var(--surface); width: 100%; max-width: 560px; border-radius: 20px 20px 0 0; max-height: 92%; overflow-y: auto; display: flex; flex-direction: column; gap: 14px;
   padding: 18px max(16px, env(safe-area-inset-right, 0px)) calc(18px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
-.status { font-size: 14px; border-radius: 12px; padding: 11px 12px; background: var(--bg); color: var(--ink-2); display: flex; gap: 9px; align-items: flex-start; }
+.status { font-size: 14px; border-radius: 14px; padding: 14px 16px; background: var(--well); color: var(--ink-2); display: flex; gap: 9px; align-items: flex-start; }
 .status.err { box-shadow: inset 0 0 0 1px var(--bad); color: var(--ink); }
 .status.ok { box-shadow: inset 0 0 0 1px var(--good); color: var(--ink); }
 .spin { width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--axis); border-top-color: var(--ink); flex: none; margin-top: 2px; animation: spin 0.9s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .spin { animation: none; } }
-.row-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+.row-btns { display: flex; gap: 12px; flex-wrap: wrap; }
 .row-btns .btn { flex: 1 1 140px; }
 .empty { text-align: center; padding: 26px 12px; color: var(--ink-2); display: flex; flex-direction: column; gap: 6px; }
 
@@ -184,7 +184,7 @@ ol.plain { margin: 0; padding-left: 20px; display: flex; flex-direction: column;
 
 body { --gl: max(16px, env(safe-area-inset-left, 0px)); --gr: max(16px, env(safe-area-inset-right, 0px)); -webkit-tap-highlight-color: transparent; }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 16; background: var(--bg); }
-.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 15; margin: -14px calc(-1 * var(--gr)) -4px calc(-1 * var(--gl)); padding: 12px var(--gr) 10px var(--gl);
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 15; margin: -16px calc(-1 * var(--gr)) 0 calc(-1 * var(--gl)); padding: 16px var(--gr) 14px var(--gl);
   background: var(--glass-bg); -webkit-backdrop-filter: blur(20px) saturate(180%); backdrop-filter: blur(20px) saturate(180%);
   border-bottom: 1px solid transparent; transition: border-color 200ms ease; }
 .top.scrolled { border-bottom-color: var(--line); }
@@ -196,18 +196,24 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .btn:not(:disabled):active, .tab:active, .seg button:active { scale: 0.96; }
 .linkbtn:active { opacity: 0.6; }
 @media (hover: hover) and (pointer: fine) {
-  .btn:not(.primary):not(:disabled):hover, .tab:not([aria-current="page"]):hover { background-color: var(--bg); }
+  .btn:not(.primary):not(:disabled):hover, .tab:not([aria-current="page"]):hover { background-color: var(--well); }
   .btn.primary:not(:disabled):hover { opacity: 0.92; }
   .linkbtn:hover { color: var(--ink); }
 }
 .spin { animation-duration: 0.6s; }
 
-.sheet-back { visibility: hidden; opacity: 0; pointer-events: none; transition: opacity 200ms ease, visibility 0s linear 260ms; overscroll-behavior: contain; }
-.sheet-back.open { visibility: visible; opacity: 1; pointer-events: auto; transition: opacity 250ms ease, visibility 0s; }
-.sheet { transform: translateY(100%); transition: transform 240ms var(--ease-out); overscroll-behavior: contain; box-shadow: 0 -12px 40px -8px rgb(0 0 0 / 0.35); padding-top: 6px; }
-.sheet-back.open .sheet { transform: translateY(0); transition: transform 460ms var(--ease-drawer); }
-.grab { align-self: stretch; display: flex; justify-content: center; padding: 8px 0 6px; touch-action: none; cursor: grab; }
-.grab::before { content: ""; width: 40px; height: 5px; border-radius: 3px; background: var(--axis); }
+.sheet-back { inset: 0 0 auto 0; height: 100%; align-items: center;
+  padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+  visibility: hidden; opacity: 0; pointer-events: none; transition: opacity 160ms ease, visibility 0s linear 200ms; overscroll-behavior: contain; }
+.sheet-back.open { visibility: visible; opacity: 1; pointer-events: auto; transition: opacity 220ms ease, visibility 0s; }
+.sheet { border-radius: 24px; max-height: 100%; max-width: 440px; padding: 24px 20px 20px; gap: 18px; transform: scale(0.96); transition: transform 160ms var(--ease-out);
+  overscroll-behavior: contain; box-shadow: 0 24px 60px -12px rgb(0 0 0 / 0.45), 0 0 0 1px var(--ring); }
+.sheet-back.open .sheet { transform: none; transition: transform 280ms var(--ease-out); }
+.sheet .row-btns { margin-top: 4px; }
+input[type="number"] { -moz-appearance: textfield; appearance: textfield; }
+input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+input[type="date"] { -webkit-appearance: none; appearance: none; min-width: 0; text-align: left; }
+input[type="date"]::-webkit-date-and-time-value { text-align: left; }
 
 @keyframes fade { from { opacity: 0; } }
 main.view { animation: fade 150ms ease-out; }
@@ -235,12 +241,63 @@ main.view { animation: fade 150ms ease-out; }
   .top { background: var(--bg); -webkit-backdrop-filter: none; backdrop-filter: none; }
   .tabs { background: var(--surface); -webkit-backdrop-filter: none; backdrop-filter: none; }
 }
+
+:root { --well: #eef1f5; --sheet: #ffffff; --tab-on: #ffffff; --backdrop: linear-gradient(180deg, #f1f4f9, #e4eaf3); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #161d26; --surface: #1c2531; --line: rgb(255 255 255 / 0.08); --axis: rgb(255 255 255 / 0.20);
+  --register: #1c2531; --register-cell: #27323f; --well: rgb(8 12 18 / 0.32); --sheet: #1f2936; --tab-on: rgb(255 255 255 / 0.10);
+  --glass-bg: rgb(22 29 38 / 0.72); --ring: rgb(255 255 255 / 0.06);
+  --backdrop: radial-gradient(130% 60% at 50% -10%, #1c2634 0%, transparent 70%), linear-gradient(180deg, #161d26 0%, #141b24 100%);
+} }
+:root[data-theme="dark"] {
+  --bg: #161d26; --surface: #1c2531; --line: rgb(255 255 255 / 0.08); --axis: rgb(255 255 255 / 0.20);
+  --register: #1c2531; --register-cell: #27323f; --well: rgb(8 12 18 / 0.32); --sheet: #1f2936; --tab-on: rgb(255 255 255 / 0.10);
+  --glass-bg: rgb(22 29 38 / 0.72); --ring: rgb(255 255 255 / 0.06);
+  --backdrop: radial-gradient(130% 60% at 50% -10%, #1c2634 0%, transparent 70%), linear-gradient(180deg, #161d26 0%, #141b24 100%);
+}
+body::after { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: var(--backdrop); }
+.card, .register { box-shadow: inset 0 1px 0 var(--ring), 0 0 0 1px var(--ring), 0 12px 32px -16px rgb(0 0 0 / 0.35); }
+.register .foot { border-top-color: rgb(255 255 255 / 0.12); }
+
+.top { display: block; }
+.top-row { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+.tabs { position: static; background: none; border: 0; padding: 0; margin-top: 14px; -webkit-backdrop-filter: none; backdrop-filter: none; }
+.tabs div { max-width: none; background: var(--well); border-radius: 14px; padding: 4px; gap: 4px; }
+.tab { flex-direction: row; justify-content: center; min-height: 40px; font-size: 13px; padding: 6px 2px; border-radius: 10px; color: var(--ink-2); }
+.tab svg { display: none; }
+.tab[aria-current="page"] { background: var(--tab-on); color: var(--ink); box-shadow: 0 1px 2px rgb(0 0 0 / 0.18); }
+
+.sheet-back { align-items: flex-start; padding-top: calc(env(safe-area-inset-top, 0px) + 56px); }
+.sheet { background: var(--sheet); transform-origin: 50% 0; transform: translateY(-10px) scale(0.97); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .chart svg.wait .bar { transform-box: fill-box; transform-origin: 50% 100%; transform: scaleY(0.02); opacity: 0.25; }
+  .chart svg.wait .draw { stroke-dasharray: 1; stroke-dashoffset: 1; }
+  .chart svg.wait .pt, .chart svg.wait .val { opacity: 0; }
+  .chart svg.anim .bar { animation-duration: 900ms; animation-delay: calc(var(--i) * 90ms); }
+  .chart svg.anim .draw { animation-duration: 1200ms; animation-delay: 0ms; }
+  .chart svg.anim .pt { animation-delay: calc(var(--i) * 220ms + 150ms); }
+}
+
+.register .tag span, .digits em, .register .foot { color: var(--muted); }
+.register .foot { border-top-color: var(--line); }
+:is(.card, .register) { --surface: #e9e9e7; --register: #e9e9e7; --register-cell: #d9d9d6; --register-ink: #14181d; --ink: #14181d; --ink-2: #444a52; --muted: #666c74; --line: #d0d0cc; --axis: #a9a9a4; --well: #dcdcd9; --tab-on: #f7f7f5; --sheet: #e9e9e7; --t2: #0f1722; --t1: #eb6834; --forecast: #f0a27c; --bad: #c0302f; --ring: rgb(255 255 255 / 0.5); color: var(--ink); color-scheme: light; }
+.card .eyebrow { color: #c8501f; }
+.card .seg button[aria-pressed="true"] { background: #eb6834; color: #ffffff; box-shadow: none; }
 </style>
 
 <div class="app">
   <header class="top">
-    <h1>Elektroměr doma</h1>
-    <p class="next" id="nextDue"></p>
+    <div class="top-row">
+      <h1>Elektroměr doma</h1>
+      <p class="next" id="nextDue"></p>
+    </div>
+    <nav class="tabs" aria-label="Části aplikace"><div>
+  <button class="tab" type="button" data-tab="prehled" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Přehled</button>
+  <button class="tab" type="button" data-tab="odecty"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14M5 10h14M5 15h14M5 20h9"/></svg>Odečty</button>
+  <button class="tab" type="button" data-tab="investice"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3 5 14h6l-1 7 8-11h-6z"/></svg>Investice</button>
+  <button class="tab" type="button" data-tab="nastaveni"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg>Nastavení</button>
+</div></nav>
   </header>
 
   <div id="notice" class="status err" hidden></div>
@@ -291,6 +348,8 @@ main.view { animation: fade 150ms ease-out; }
 
     <section class="card" id="statCard" hidden></section>
 
+    <section class="card" id="advCard" hidden></section>
+
     <section class="card" id="fcCard" hidden>
       <h2>Výhled na 12 měsíců</h2>
       <p class="small muted" id="fcNote"></p>
@@ -329,6 +388,7 @@ main.view { animation: fade 150ms ease-out; }
         <div class="field"><label for="sP2">T2 nízký tarif</label><input type="number" id="sP2" step="0.01" min="0" inputmode="decimal"><span class="hint">Kč za kWh</span></div>
       </div>
       <div class="field"><label for="sFix">Stálé měsíční platby</label><input type="number" id="sFix" step="1" min="0" inputmode="numeric"><span class="hint">Kč za měsíc: jistič, stálý plat dodavateli. Najdete je na vyúčtování. Nula znamená, že se nepočítají.</span></div>
+      <div class="field"><label for="sAdv">Měsíční záloha dodavateli</label><input type="number" id="sAdv" step="50" min="0" inputmode="numeric"><span class="hint">Kč za měsíc. Podle ní se na Přehledu počítá přeplatek nebo nedoplatek.</span></div>
     </section>
     <section class="card">
       <h2>Dům</h2>
@@ -353,16 +413,10 @@ main.view { animation: fade 150ms ease-out; }
   </main>
 </div>
 
-<nav class="tabs" aria-label="Části aplikace"><div>
-  <button class="tab" type="button" data-tab="prehled" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Přehled</button>
-  <button class="tab" type="button" data-tab="odecty"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14M5 10h14M5 15h14M5 20h9"/></svg>Odečty</button>
-  <button class="tab" type="button" data-tab="investice"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3 5 14h6l-1 7 8-11h-6z"/></svg>Investice</button>
-  <button class="tab" type="button" data-tab="nastaveni"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg>Nastavení</button>
-</div></nav>
+
 
 <div class="sheet-back" id="sheetBack">
   <form class="sheet" id="sheet" novalidate>
-    <div class="grab" id="grab" aria-hidden="true"></div>
     <h2 id="sheetTitle">Nový odečet</h2>
     <div class="status" id="sheetStatus" hidden></div>
     <div class="field"><label for="fDate">Datum odečtu</label><input type="date" id="fDate" required></div>
@@ -390,7 +444,7 @@ const MONTHS_FULL = ["leden", "únor", "březen", "duben", "květen", "červen",
 const HDD_RAW = [18, 15, 13, 8, 3, 0, 0, 0, 2.5, 8, 13, 17.5];
 const HDD_SUM = HDD_RAW.reduce((a, b) => a + b, 0);
 const HDD = HDD_RAW.map((v) => v / HDD_SUM);
-const DEFAULTS = { priceT1: 4, priceT2: 3.5, fixedMonthly: 0, hasHydronic: false, hasChimney: true, woodPrice: 1900, reminderDay: 15 };
+const DEFAULTS = { priceT1: 4, priceT2: 3.5, fixedMonthly: 0, hasHydronic: false, hasChimney: true, woodPrice: 1900, reminderDay: 15, advance: 0 };
 
 const state = { readings: [], settings: { ...DEFAULTS }, loaded: false, db: null, sample: null, canImages: false, unit: "kwh", tab: "prehled", sel: {} };
 
@@ -546,9 +600,12 @@ function barChart(el, cols, opt) {
 }
 
 function settle(el, anim) {
-  if (!anim) return;
   const svg = el.firstChild;
-  setTimeout(() => svg.classList.remove("anim"), 1600);
+  const play = (v) => { v.classList.remove("wait"); v.classList.add("anim"); setTimeout(() => v.classList.remove("anim"), 2600); };
+  if (!el._seen) {
+    svg.classList.remove("anim"); svg.classList.add("wait");
+    whenSeen(el, () => { el._seen = true; play(el.firstChild); });
+  } else if (anim) play(svg);
 }
 
 function lineChart(el, pts, opt) {
@@ -571,7 +628,7 @@ function lineChart(el, pts, opt) {
   if (pts.length > 1) g += `<polyline class="draw" pathLength="1" fill="none" stroke="var(--t2)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" points="${pts.map((p, i) => x(i) + "," + y(p.v)).join(" ")}"/>`;
   pts.forEach((p, i) => {
     const on = opt.sel === i;
-    g += `<circle class="pt" style="--i:${i}" cx="${x(i)}" cy="${y(p.v)}" r="${on ? 6 : 4.5}" fill="var(--t2)" stroke="var(--surface)" stroke-width="2"/>`;
+    g += `<circle class="pt" style="--i:${i}" cx="${x(i)}" cy="${y(p.v)}" r="${on ? 6 : 4.5}" fill="var(--t2)" stroke="var(--sheet)" stroke-width="2"/>`;
     if (on) g += `<text x="${x(i)}" y="${y(p.v) - 11}" text-anchor="middle" class="val">${nf(p.v, 1)}</text>`;
     if (pts.length <= 8 || i % 2 === 0) g += `<text x="${x(i)}" y="${H - 7}" text-anchor="middle" class="${on ? "val" : ""}">${esc(p.label)}</text>`;
     g += `<rect data-i="${i}" x="${L + slot * i}" y="0" width="${slot}" height="${H}" fill="transparent" style="cursor:pointer"/>`;
@@ -587,13 +644,47 @@ function wire(el, onSel) {
   el.onpointermove = (e) => { if (e.pointerType === "mouse") pick(e); };
 }
 
-function digits(el, n) {
-  const s = n == null ? "––––––" : String(Math.round(n)).padStart(6, "0");
-  if (el._s === s) return;
-  el._s = s;
-  el.innerHTML = [...s].map((ch, i) => `<i style="--i:${i}">${ch}</i>`).join("") + "<em>kWh</em>";
+const REDUCED = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const seenIO = "IntersectionObserver" in window ? new IntersectionObserver((es) => {
+  for (const e of es) if (e.isIntersecting) { seenIO.unobserve(e.target); if (e.target._reveal) e.target._reveal(); }
+}, { threshold: 0.3 }) : null;
+function whenSeen(el, fn) { el._reveal = fn; if (seenIO) seenIO.observe(el); else fn(); }
+const easeOut = (p) => 1 - Math.pow(1 - p, 4);
+function tween(ms, paint) {
+  let done = false;
+  const t0 = performance.now();
+  const end = () => { if (!done) { done = true; paint(1); } };
+  const step = (t) => { if (done) return; const p = Math.min(1, (t - t0) / ms); if (p >= 1) return end(); paint(easeOut(p)); requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+  setTimeout(end, ms + 400);
 }
+function countUps() {
+  if (REDUCED) return;
+  document.querySelectorAll("[data-count]").forEach((el) => {
+    if (el._c) return;
+    el._c = true;
+    const to = Number(el.dataset.count), dec = Number(el.dataset.dec || 0);
+    if (!Number.isFinite(to)) return;
+    whenSeen(el, () => tween(1100, (p) => { el.textContent = nf(to * p, dec); }));
+  });
+}
+const cnt = (v, dec = 0) => `<span data-count="${v}" data-dec="${dec}">${nf(v, dec)}</span>`;
+function setHTML(el, html) { if (el._h !== html) { el._h = html; el.innerHTML = html; } }
 
+function digits(el, n) {
+  const key = n == null ? "x" : String(Math.round(n));
+  if (el._s === key) return;
+  el._s = key;
+  const paint = (v) => {
+    const str = v == null ? "––––––" : String(Math.round(v)).padStart(6, "0");
+    if (el.children.length !== 7) el.innerHTML = "<i></i><i></i><i></i><i></i><i></i><i></i><em>kWh</em>";
+    [...str].forEach((ch, i) => { if (el.children[i].textContent !== ch) el.children[i].textContent = ch; });
+  };
+  const from = el._n || 0;
+  el._n = n == null ? 0 : n;
+  if (n == null || REDUCED) return paint(n);
+  tween(1400, (p) => paint(from + (n - from) * p));
+}
 function dueInfo() {
   const now = new Date(), y = now.getFullYear(), m = now.getMonth(), day = state.settings.reminderDay || 15;
   const ym = y + "-" + String(m + 1).padStart(2, "0");
@@ -622,6 +713,7 @@ function render() {
 
   $("emptyCard").hidden = !(state.loaded && P.length === 0);
   for (const id of ["heroCard", "barCard", "dayCard", "statCard"]) $(id).hidden = P.length === 0;
+  if (!P.length) $("advCard").hidden = true;
   $("fcCard").hidden = !(M && M.annualHeat != null);
 
   if (P.length) {
@@ -631,14 +723,14 @@ function render() {
       const ch = (p.perDay / prev.perDay - 1) * 100;
       delta = `<span class="delta">${ch >= 0 ? "▲" : "▼"} ${nf(Math.abs(ch))} % na den proti minulému období</span>`;
     }
-    $("heroCard").innerHTML = `
+    setHTML($("heroCard"), `
       <p class="eyebrow">Poslední období · ${fmtDate(p.from)} až ${fmtDate(p.to)} · ${p.days} dní</p>
-      <div class="hero-line"><p class="hero-figure num">${nf(p.kwh)} <small>kWh</small></p><p class="hero-figure num">${nf(Math.round(p.cost))} <small>Kč</small></p></div>
+      <div class="hero-line"><p class="hero-figure num">${cnt(p.kwh)} <small>kWh</small></p><p class="hero-figure num">${cnt(Math.round(p.cost))} <small>Kč</small></p></div>
       ${delta}
       <div class="split">
-        <div><p class="k"><span class="dot t1"></span>T1 vysoký tarif</p><p class="v num">${nf(p.d1)} kWh</p><p class="s num">${kc(p.c1)}</p></div>
-        <div><p class="k"><span class="dot t2"></span>T2 nízký tarif</p><p class="v num">${nf(p.d2)} kWh</p><p class="s num">${kc(p.c2)}</p></div>
-      </div>`;
+        <div><p class="k"><span class="dot t1"></span>T1 vysoký tarif</p><p class="v num">${cnt(p.d1)} kWh</p><p class="s num">${kc(p.c1)}</p></div>
+        <div><p class="k"><span class="dot t2"></span>T2 nízký tarif</p><p class="v num">${cnt(p.d2)} kWh</p><p class="s num">${kc(p.c2)}</p></div>
+      </div>`);
 
     const PB = P.slice(-12), off = P.length - PB.length;
     const lab = (q) => MONTHS[new Date(D(q.to)).getUTCMonth()];
@@ -657,16 +749,37 @@ function render() {
 
     const totCost = P.reduce((a, x) => a + x.cost, 0);
     const maxP = P.reduce((a, x) => (x.perDay > a.perDay ? x : a), P[0]);
-    $("statCard").innerHTML = `
+    setHTML($("statCard"), `
       <h2>Od prvního odečtu</h2>
       <div class="split">
-        <div><p class="k">Spotřeba celkem</p><p class="v num">${nf(M.totKwh)} kWh</p><p class="s num">za ${M.totDays} dní</p></div>
-        <div><p class="k">Zaplaceno za energii</p><p class="v num">${kc(totCost)}</p><p class="s num">průměr ${nf(M.avgPrice, 2)} Kč/kWh</p></div>
-        <div><p class="k">Podíl nízkého tarifu</p><p class="v num">${nf(M.tot2 / M.totKwh * 100)} %</p><p class="s">T2 z celkové spotřeby</p></div>
-        <div><p class="k">Nejnáročnější období</p><p class="v num">${nf(maxP.perDay, 1)} kWh/den</p><p class="s num">do ${fmtDate(maxP.to, true)}</p></div>
-        <div><p class="k">Spotřeba mimo topení</p><p class="v num">${nf(M.base, 1)} kWh/den</p><p class="s">${M.hasSummer ? "podle letních odečtů" : "odhad, chybí letní odečet"}</p></div>
-        <div><p class="k">Odhad na celý rok</p><p class="v num">${M.annual == null ? "zatím nelze" : nf(Math.round(M.annual / 100) * 100) + " kWh"}</p><p class="s num">${M.annualCost == null ? "chybí odečty z topné sezóny" : "asi " + kc(Math.round(M.annualCost / 100) * 100)}</p></div>
-      </div>`;
+        <div><p class="k">Spotřeba celkem</p><p class="v num">${cnt(M.totKwh)} kWh</p><p class="s num">za ${M.totDays} dní</p></div>
+        <div><p class="k">Zaplaceno za energii</p><p class="v num">${cnt(Math.round(totCost))} Kč</p><p class="s num">průměr ${nf(M.avgPrice, 2)} Kč/kWh</p></div>
+        <div><p class="k">Podíl nízkého tarifu</p><p class="v num">${cnt(Math.round(M.tot2 / M.totKwh * 100))} %</p><p class="s">T2 z celkové spotřeby</p></div>
+        <div><p class="k">Nejnáročnější období</p><p class="v num">${cnt(Math.round(maxP.perDay * 10) / 10, 1)} kWh/den</p><p class="s num">do ${fmtDate(maxP.to, true)}</p></div>
+        <div><p class="k">Spotřeba mimo topení</p><p class="v num">${cnt(Math.round(M.base * 10) / 10, 1)} kWh/den</p><p class="s">${M.hasSummer ? "podle letních odečtů" : "odhad, chybí letní odečet"}</p></div>
+        <div><p class="k">Odhad na celý rok</p><p class="v num">${M.annual == null ? "zatím nelze" : cnt(Math.round(M.annual / 100) * 100) + " kWh"}</p><p class="s num">${M.annualCost == null ? "chybí odečty z topné sezóny" : "asi " + kc(Math.round(M.annualCost / 100) * 100)}</p></div>
+      </div>`);
+
+    $("advCard").hidden = !(s.advance > 0);
+    if (s.advance > 0) {
+      const months = M.totDays / 30.44, paid = s.advance * months, diff = paid - totCost;
+      const yearPaid = s.advance * 12, yearDiff = M.annualCost == null ? null : yearPaid - M.annualCost;
+      const lab = (d) => (d >= 0 ? "přeplatek" : "nedoplatek");
+      const chip = (d) => `<span class="verdict ${d >= 0 ? "good" : "bad"}"><i></i>${lab(d)} ${kc(Math.round(Math.abs(d) / 10) * 10)}</span>`;
+      setHTML($("advCard"), `
+        <div class="card-head"><h2>Zálohy</h2><span class="small muted num">${kc(s.advance)} měsíčně</span></div>
+        <div class="split">
+          <div><p class="k">Zaplaceno na zálohách</p><p class="v num">${cnt(Math.round(paid))} Kč</p><p class="s num">za ${nf(months, 1)} měsíce od prvního odečtu</p></div>
+          <div><p class="k">Skutečně spotřebováno</p><p class="v num">${cnt(Math.round(totCost))} Kč</p><p class="s">za stejnou dobu</p></div>
+        </div>
+        <p class="small">Zatím: ${chip(diff)}</p>
+        ${yearDiff == null ? "" : `<div class="split">
+          <div><p class="k">Zálohy za rok</p><p class="v num">${cnt(yearPaid)} Kč</p><p class="s">12 záloh</p></div>
+          <div><p class="k">Odhad spotřeby za rok</p><p class="v num">${cnt(Math.round(M.annualCost / 100) * 100)} Kč</p><p class="s">podle výhledu níže</p></div>
+        </div>
+        <p class="small">Při ročním vyúčtování vychází: ${chip(yearDiff)}</p>
+        <p class="small muted">Aby záloha pokryla celý rok, vycházela by asi na ${kc(Math.ceil(M.annualCost / 12 / 50) * 50)} měsíčně. Je to odhad, zpřesní se se zimními odečty.${s.fixedMonthly > 0 ? "" : " Stálé měsíční platby v něm nejsou, dokud je nedoplníte v Nastavení."}</p>`}`);
+    }
 
     const F = forecast(M, last.date);
     if (F.length) {
@@ -681,6 +794,7 @@ function render() {
   renderTable(R, P);
   renderInvest(M, s, P.length);
   renderSettings();
+  countUps();
 }
 
 function renderTable(R, P) {
@@ -738,13 +852,13 @@ function renderInvest(M, s, nP) {
 function renderSettings() {
   const s = state.settings, a = document.activeElement;
   const set = (id, v) => { if (a !== $(id)) $(id).value = v; };
-  set("sP1", s.priceT1); set("sP2", s.priceT2); set("sFix", s.fixedMonthly); set("sWood", s.woodPrice);
+  set("sP1", s.priceT1); set("sP2", s.priceT2); set("sFix", s.fixedMonthly); set("sWood", s.woodPrice); set("sAdv", s.advance);
   $("sHyd").checked = !!s.hasHydronic; $("sChim").checked = !!s.hasChimney;
 }
 
 async function saveSettings() {
   const num = (id, def) => { const v = parseFloat($(id).value); return isFinite(v) && v >= 0 ? v : def; };
-  const next = { ...state.settings, priceT1: num("sP1", state.settings.priceT1), priceT2: num("sP2", state.settings.priceT2), fixedMonthly: num("sFix", 0), woodPrice: num("sWood", 1900), hasHydronic: $("sHyd").checked, hasChimney: $("sChim").checked };
+  const next = { ...state.settings, priceT1: num("sP1", state.settings.priceT1), priceT2: num("sP2", state.settings.priceT2), fixedMonthly: num("sFix", 0), advance: num("sAdv", 0), woodPrice: num("sWood", 1900), hasHydronic: $("sHyd").checked, hasChimney: $("sChim").checked };
   state.settings = next; render();
   if (!state.db) { $("saveState").textContent = "Změna platí jen do zavření stránky, úložiště není dostupné."; return; }
   try { await state.db.doc("settings/main").set(next); $("saveState").textContent = "Uloženo."; }
@@ -889,37 +1003,14 @@ async function boot() {
     catch (e) { setStatus("err", "Smazání se nepovedlo. Zkuste to znovu."); }
   };
   $("tbl").onclick = (e) => { const d = e.target.dataset ? e.target.dataset.edit : null; if (d) { const r = state.readings.find((x) => x.date === d); if (r) openSheet("manual", r); } };
-  for (const id of ["sP1", "sP2", "sFix", "sWood", "sHyd", "sChim"]) $(id).onchange = saveSettings;
+  for (const id of ["sP1", "sP2", "sFix", "sAdv", "sWood", "sHyd", "sChim"]) $(id).onchange = saveSettings;
   const topBar = document.querySelector(".top");
   window.addEventListener("scroll", () => topBar.classList.toggle("scrolled", window.scrollY > 4), { passive: true });
-  const grab = $("grab"), sh = $("sheet");
-  let drag = null;
-  const rubber = (o, d) => (o * d * 0.55) / (d + 0.55 * Math.abs(o));
-  grab.addEventListener("pointerdown", (e) => {
-    if (drag) return;
-    grab.setPointerCapture(e.pointerId);
-    drag = { id: e.pointerId, y0: e.clientY, dy: 0, hist: [{ y: e.clientY, t: e.timeStamp }] };
-    sh.style.transition = "none";
-  });
-  grab.addEventListener("pointermove", (e) => {
-    if (!drag || e.pointerId !== drag.id) return;
-    const raw = e.clientY - drag.y0;
-    drag.dy = raw >= 0 ? raw : -rubber(-raw, 160);
-    drag.hist.push({ y: e.clientY, t: e.timeStamp });
-    if (drag.hist.length > 5) drag.hist.shift();
-    sh.style.transform = "translateY(" + drag.dy + "px)";
-  });
-  const endDrag = (e) => {
-    if (!drag || e.pointerId !== drag.id) return;
-    const a = drag.hist[0], b = drag.hist[drag.hist.length - 1];
-    const v = b.t > a.t ? (b.y - a.y) / (b.t - a.t) : 0;
-    const dy = drag.dy;
-    drag = null;
-    sh.style.transition = "";
-    if (v > 0.5 || (dy > 120 && v > -0.1)) closeSheet(); else sh.style.transform = "";
-  };
-  grab.addEventListener("pointerup", endDrag);
-  grab.addEventListener("pointercancel", endDrag);
+  const vv = window.visualViewport;
+  if (vv) {
+    const fit = () => { const sb = $("sheetBack"); sb.style.height = vv.height + "px"; sb.style.top = vv.offsetTop + "px"; };
+    vv.addEventListener("resize", fit); vv.addEventListener("scroll", fit); fit();
+  }
   let rt; window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(render, 150); });
 
   const c = window.claude;
@@ -939,7 +1030,6 @@ async function boot() {
       .map((r) => ({ date: r.date, t1: r.t1, t2: r.t2 })).sort((a, b) => (a.date < b.date ? -1 : 1));
     const app = document.querySelector(".app");
     if (!state.loaded) { app.classList.add("first"); setTimeout(() => app.classList.remove("first"), 1400); }
-    app.classList.add("roll"); clearTimeout(state.rollT); state.rollT = setTimeout(() => app.classList.remove("roll"), 1400);
     state.loaded = true;
     if (!snap.metadata || !snap.metadata.fromCache) { clearTimeout(slow); notice(""); }
     render();
