@@ -1,0 +1,166 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Elektroměr doma</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="css/styles.css">
+
+
+<div id="splash" aria-hidden="true">
+  <svg viewBox="0 0 100 100"><circle class="ring-bg" cx="50" cy="50" r="42"/><circle class="ring" cx="50" cy="50" r="42" pathLength="1"/><image class="bolt" href="icons/03-elektromer.png" x="22" y="22" width="56" height="56"/></svg>
+  <b>Elektroměr doma</b>
+  <span>Načítám odečty</span>
+</div>
+<div class="app">
+  <header class="top">
+    <div class="top-row">
+      <h1>Elektroměr doma</h1>
+      <p class="next" id="nextDue"></p>
+    </div>
+    <nav class="tabs" aria-label="Části aplikace"><div>
+  <button class="tab" type="button" data-tab="prehled" aria-current="page"><img src="icons/04-graf-spotreby.png" alt="" width="26" height="26">Přehled</button>
+  <button class="tab" type="button" data-tab="odecty"><img src="icons/06-historie.png" alt="" width="26" height="26">Odečty</button>
+  <button class="tab" type="button" data-tab="investice"><img src="icons/09-uspory.png" alt="" width="26" height="26">Investice</button>
+  <button class="tab" type="button" data-tab="nastaveni"><img src="icons/11-dum.png" alt="" width="26" height="26">Nastavení</button>
+</div></nav>
+  </header>
+
+  <div id="notice" class="status err" hidden></div>
+
+  <main id="v-prehled" class="view">
+    <div class="intro"><span class="icw big"><img src="icons/03-elektromer.png" alt="" width="96" height="96"></span><div><h2 id="introT">Elektroměr</h2><p class="small" id="introS">Načítám odečty…</p></div></div>
+    <div id="dueBanner" class="due" hidden></div>
+    <section class="register" aria-label="Poslední stav elektroměru">
+      <div class="row">
+        <div class="tag"><b><span class="dot t1"></span>T1</b><span>vysoký tarif</span></div>
+        <div class="digits" id="regT1"></div>
+      </div>
+      <div class="row">
+        <div class="tag"><b><span class="dot t2"></span>T2</b><span>nízký tarif</span></div>
+        <div class="digits" id="regT2"></div>
+      </div>
+      <div class="foot"><span id="regDate">Načítám odečty…</span><span id="regCount"></span></div>
+    </section>
+    <div class="actions">
+      <button class="btn primary" id="btnPhoto" type="button">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2M7 12h10"/></svg>
+        Vyfotit elektroměr
+      </button>
+      <button class="linkbtn" id="btnManual" type="button">Zadat stav ručně</button>
+    </div>
+    <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" multiple hidden>
+
+    <section class="card" id="heroCard" hidden></section>
+
+    <section class="card" id="barCard" hidden>
+      <div class="card-head">
+        <div class="hd"><span class="icw ic"><img src="icons/04-graf-spotreby.png" alt="" width="40" height="40"></span><h2>Spotřeba po odečtech</h2></div>
+        <div class="seg" role="group" aria-label="Jednotka grafu">
+          <button type="button" id="unitKwh" aria-pressed="true">kWh</button>
+          <button type="button" id="unitKc" aria-pressed="false">Kč</button>
+        </div>
+      </div>
+      <div class="legend"><span><i class="dot t2"></i>T2 nízký tarif</span><span><i class="dot t1"></i>T1 vysoký tarif</span></div>
+      <div class="chart" id="barChart"></div>
+      <p class="readout" id="barRead"></p>
+    </section>
+
+    <section class="card" id="dayCard" hidden>
+      <div class="hd"><span class="icw ic"><img src="icons/05-denni-prumer.png" alt="" width="40" height="40"></span><h2>Průměr za den</h2></div>
+      <p class="small muted">Odečty nejsou vždy po stejném počtu dní. Průměr na den to srovná.</p>
+      <div class="chart" id="dayChart"></div>
+      <p class="readout" id="dayRead"></p>
+    </section>
+
+    <section class="card" id="statCard" hidden></section>
+
+    <section class="card" id="advCard" hidden></section>
+
+    <section class="card" id="fcCard" hidden>
+      <div class="hd"><span class="icw ic"><img src="icons/07-vyhled.png" alt="" width="40" height="40"></span><h2>Výhled na 12 měsíců</h2></div>
+      <p class="small muted" id="fcNote"></p>
+      <div class="chart" id="fcChart"></div>
+      <p class="readout" id="fcRead"></p>
+    </section>
+
+    <section class="card empty" id="emptyCard" hidden>
+      <h2>Zatím tu nejsou žádné odečty</h2>
+      <p>Vyfoťte displej elektroměru. Po druhém odečtu se objeví spotřeba, cena a grafy.</p>
+    </section>
+  </main>
+
+  <main id="v-odecty" class="view" hidden>
+    <div class="intro"><span class="icw big"><img src="icons/06-historie.png" alt="" width="96" height="96"></span><div><h2>Všechny odečty</h2><p class="small" id="tblCount"></p></div></div>
+    <section class="card">
+      <div class="tablewrap"><table id="tbl"></table></div>
+      <p class="small muted">Sloupce kWh a Kč jsou spotřeba a cena za období od předchozího odečtu.</p>
+    </section>
+  </main>
+
+  <main id="v-investice" class="view" hidden>
+    <div class="intro"><span class="icw big"><img src="icons/09-uspory.png" alt="" width="96" height="96"></span><div><h2>Vyplatí se investice?</h2><p class="small">Seřazeno od nejrychlejší návratnosti.</p></div></div>
+    <section class="card" id="invIntro"></section>
+    <div id="invList" class="view"></div>
+    <section class="card">
+      <div class="hd"><span class="icw ic"><img src="icons/10-tipy.png" alt="" width="40" height="40"></span><h2>Co zvážit dřív než velkou investici</h2></div>
+      <ul class="plain" id="tips"></ul>
+    </section>
+  </main>
+
+  <main id="v-nastaveni" class="view" hidden>
+    <div class="intro"><span class="icw big"><img src="icons/13-vypocet.png" alt="" width="96" height="96"></span><div><h2>Nastavení</h2><p class="small">Ceny, zálohy a údaje o domě.</p></div></div>
+    <section class="card">
+      <div class="hd"><span class="icw ic"><img src="icons/02-naklady.png" alt="" width="40" height="40"></span><h2>Ceny elektřiny</h2></div>
+      <div class="grid2">
+        <div class="field"><label for="sP1">T1 vysoký tarif</label><input type="number" id="sP1" step="0.01" min="0" inputmode="decimal"><span class="hint">Kč za kWh</span></div>
+        <div class="field"><label for="sP2">T2 nízký tarif</label><input type="number" id="sP2" step="0.01" min="0" inputmode="decimal"><span class="hint">Kč za kWh</span></div>
+      </div>
+      <div class="field"><label for="sFix">Stálé měsíční platby</label><input type="number" id="sFix" step="1" min="0" inputmode="numeric"><span class="hint">Kč za měsíc: jistič, stálý plat dodavateli. Najdete je na vyúčtování. Nula znamená, že se nepočítají.</span></div>
+      <div class="field"><label for="sAdv">Měsíční záloha dodavateli</label><input type="number" id="sAdv" step="50" min="0" inputmode="numeric"><span class="hint">Kč za měsíc. Podle ní se na Přehledu počítá přeplatek nebo nedoplatek.</span></div>
+    </section>
+    <section class="card">
+      <div class="hd"><span class="icw ic"><img src="icons/11-dum.png" alt="" width="40" height="40"></span><h2>Dům</h2></div>
+      <p class="small muted">Podle toho se počítá záložka Investice.</p>
+      <label class="check"><input type="checkbox" id="sHyd"><span>V domě jsou radiátory nebo podlahové topení s teplou vodou</span></label>
+      <label class="check"><input type="checkbox" id="sChim"><span>V domě je funkční komín</span></label>
+      <div class="field"><label for="sWood">Cena palivového dřeva</label><input type="number" id="sWood" step="50" min="0" inputmode="numeric"><span class="hint">Kč za prostorový metr sypaný (prms). Z jednoho vyjde asi 950 kWh tepla.</span></div>
+      <p class="small muted" id="saveState"></p>
+    </section>
+    <section class="card">
+      <div class="hd"><span class="icw ic"><img src="icons/12-telefon.png" alt="" width="40" height="40"></span><h2>Aplikace na ploše telefonu</h2></div>
+      <ol class="plain">
+        <li>Otevřete odkaz na tuto stránku v Safari (iPhone) nebo v Chromu (Android) a přihlaste se ke Claudovi.</li>
+        <li>iPhone: tlačítko Sdílet, pak Přidat na plochu. Android: nabídka se třemi tečkami, pak Přidat na plochu.</li>
+        <li>Ikona pak otevře rovnou tuto stránku.</li>
+      </ol>
+    </section>
+    <section class="card">
+      <div class="hd"><span class="icw ic"><img src="icons/08-pripominka.png" alt="" width="40" height="40"></span><h2>Připomínka odečtu</h2></div>
+      <p class="small">Stránka sama upozornění poslat neumí. Připomínku na 15. den v měsíci drží kalendář. Když odečet po 15. chybí, ukáže se nahoře na Přehledu žlutý pruh.</p>
+    </section>
+  </main>
+</div>
+
+
+
+<div class="sheet-back" id="sheetBack">
+  <form class="sheet" id="sheet" novalidate>
+    <h2 id="sheetTitle">Nový odečet</h2>
+    <div class="status" id="sheetStatus" hidden></div>
+    <div class="field"><label for="fDate">Datum odečtu</label><input type="date" id="fDate" required></div>
+    <div class="grid2">
+      <div class="field"><label for="fT1">T1 vysoký tarif</label><input type="number" id="fT1" inputmode="numeric" min="0" step="1" placeholder="kWh"><span class="hint" id="hT1"></span></div>
+      <div class="field"><label for="fT2">T2 nízký tarif</label><input type="number" id="fT2" inputmode="numeric" min="0" step="1" placeholder="kWh"><span class="hint" id="hT2"></span></div>
+    </div>
+    <p class="small" id="sheetCalc"></p>
+    <button class="btn" type="button" id="btnMore">Přidat další fotku</button>
+    <div class="row-btns">
+      <button class="btn ghost" type="button" id="btnCancel">Zrušit</button>
+      <button class="btn primary" type="submit" id="btnSave" style="width:auto">Uložit odečet</button>
+    </div>
+    <div class="row-btns" id="delRow" hidden>
+      <button class="btn danger" type="button" id="btnDel">Smazat odečet</button>
+      <button class="btn danger" type="button" id="btnDelYes" hidden>Opravdu smazat</button>
+    </div>
+  </form>
+</div>
+
+<script type="module" src="js/app.js"></script>
