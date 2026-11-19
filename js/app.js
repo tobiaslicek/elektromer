@@ -14,7 +14,8 @@ export function render() {
   digits($("regT1"), last ? last.t1 : null);
   digits($("regT2"), last ? last.t2 : null);
   $("regDate").textContent = last ? "Stav k " + fmtDate(last.date, true) : state.loaded ? "Zatím bez odečtu" : "Načítám odečty…";
-  $("regCount").textContent = R.length ? R.length + " odečtů" : "";
+  $("regCount").textContent = R.length + " odečtů ›";
+  $("regCount").hidden = !R.length;
 
   const di = dueInfo();
   if (state.loaded) {
@@ -206,6 +207,7 @@ export async function boot() {
   $("unitKc").onclick = () => { state.unit = "kc"; $("unitKc").setAttribute("aria-pressed", "true"); $("unitKwh").setAttribute("aria-pressed", "false"); render(); };
   $("btnPhoto").onclick = () => { if (state.sample && state.canImages) { $("fileInput").value = ""; sheet.append = false; $("fileInput").click(); } else openSheet("manual"); };
   $("btnManual").onclick = () => openSheet("manual");
+  $("regCount").onclick = () => showTab("odecty");
   $("btnMore").onclick = () => { $("fileInput").value = ""; sheet.append = true; $("fileInput").click(); };
   $("fileInput").onchange = () => {
     const picked = [...$("fileInput").files];

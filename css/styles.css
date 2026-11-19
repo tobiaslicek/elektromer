@@ -1562,3 +1562,15 @@ body::after {
     box-shadow: 0 0 0 20px rgb(120 225 170 / 0);
   }
 }
+
+.register .foot {
+  align-items: center;
+}
+
+.register .foot .linkbtn {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 0 10px 12px;
+  margin: -10px 0;
+  color: var(--ink);
+}
