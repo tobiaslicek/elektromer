@@ -89,6 +89,7 @@ input[type="date"]::-webkit-date-and-time-value {
     margin: 0 calc(-1 * var(--gr)) 0 calc(-1 * var(--gl));
     padding: 28px var(--gr) 16px var(--gl);
     background: var(--color-page);
+    box-shadow: 0 -8px 0 var(--color-page);
     border-bottom: 1px solid transparent;
     transition: border-color 200ms ease;
   }

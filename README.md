@@ -15,6 +15,15 @@ Běží jako Claude Artifact. Odečty ukládá do databáze artifactu a stav z f
 
 Hodnoty na obrázcích jsou vymyšlené.
 
+## Co umí
+
+- **Odečet z fotky.** Vyfotíte displej elektroměru, stavy T1 a T2 se předvyplní a před uložením je potvrdíte. Jde zadat i ručně.
+- **Přehled.** Poslední stav, spotřeba a cena za období, změna proti minulému, graf po odečtech v kWh nebo Kč a průměr na den.
+- **Zálohy.** Porovnání zaplacených záloh se skutečnou spotřebou a odhad přeplatku nebo nedoplatku za rok.
+- **Výhled.** Odhad spotřeby na dalších 12 měsíců podle spotřeby mimo topení a běžného průběhu topné sezóny.
+- **Odečty.** Seznam všech odečtů s cenou, pruhem spotřeby a možností úpravy.
+- **Investice.** Orientační návratnost devíti úsporných technologií, seřazená podle výhodnosti vůči životnosti.
+
 ## Technologie
 
 React 19, TypeScript, Tailwind CSS 4 a Vite.

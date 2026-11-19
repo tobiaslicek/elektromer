@@ -36,7 +36,7 @@ export function Icon({ name, size, className = "" }: { name: string; size: numbe
 export function Banner({ icon, children }: { icon: string; children: ReactNode }) {
   return (
     <div className="-mx-2 -mt-3 mb-0.5 flex min-w-0 flex-wrap items-center gap-x-[18px] gap-y-3 rounded-2xl bg-panel py-2 pr-5 pl-[18px] text-on-dark shadow-[inset_0_1px_0_rgb(255_255_255/0.06)]">
-      <Icon name={icon} size={88} className="drop-shadow-[0_10px_14px_rgb(0_0_0/0.45)]" />
+      <Icon name={icon} size={88} />
       <div className="min-w-0 flex-1 basis-[calc(100%-110px)]">{children}</div>
     </div>
   );
