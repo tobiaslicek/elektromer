@@ -51,7 +51,7 @@ export function render() {
     const selB = state.sel.bar != null && state.sel.bar < PB.length ? state.sel.bar : PB.length - 1;
     const kcMode = state.unit === "kc";
     barChart($("barChart"), PB.map((q) => ({ label: lab(q), segs: [{ v: kcMode ? q.c2 : q.d2, color: "--t2" }, { v: kcMode ? q.c1 : q.d1, color: "--t1" }] })),
-      { sel: selB, animKey: state.unit, aria: "Spotřeba za jednotlivá období podle tarifu", onSel: (i) => { state.sel.bar = i; render(); } });
+      { sel: selB, unit: kcMode ? "Kč" : "kWh", animKey: state.unit, aria: "Spotřeba za jednotlivá období podle tarifu", onSel: (i) => { state.sel.bar = i; render(); } });
     const q = PB[selB];
     $("barRead").innerHTML = `<b>${fmtDate(q.from)} až ${fmtDate(q.to, true)}</b> · ${q.days} dní<br><span class="num">T2 ${nf(q.d2)} kWh (${kc(q.c2)}) · T1 ${nf(q.d1)} kWh (${kc(q.c1)}) · celkem <b>${nf(q.kwh)} kWh, ${kc(q.cost)}</b></span>`;
     void off;
@@ -98,7 +98,7 @@ export function render() {
     const F = forecast(M, last.date);
     if (F.length) {
       const selF = state.sel.fc != null ? state.sel.fc : 0;
-      barChart($("fcChart"), F.map((f) => ({ label: MONTHS[f.m], segs: [{ v: f.kwh, color: "--forecast" }] })), { sel: selF, animKey: "f", aria: "Odhad spotřeby na dalších 12 měsíců", onSel: (i) => { state.sel.fc = i; render(); } });
+      barChart($("fcChart"), F.map((f) => ({ label: MONTHS[f.m], segs: [{ v: f.kwh, color: "--forecast" }] })), { sel: selF, unit: "kWh", animKey: "f", aria: "Odhad spotřeby na dalších 12 měsíců", onSel: (i) => { state.sel.fc = i; render(); } });
       const f = F[selF];
       $("fcRead").innerHTML = `<b>${MONTHS_FULL[f.m]} ${f.y}</b><br><span class="num">odhad ${nf(Math.round(f.kwh / 10) * 10)} kWh · asi ${kc(Math.round(f.cost / 10) * 10)}</span>`;
       $("fcNote").textContent = "Odhad v kWh. Vychází ze spotřeby mimo topení a z toho, jak se v Česku běžně dělí topná sezóna mezi měsíce. Podíl topné sezóny pokrytý odečty: " + nf(Math.min(M.share, 1) * 100) + " %. S každým zimním odečtem se zpřesní.";

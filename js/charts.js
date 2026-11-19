@@ -2,7 +2,7 @@ import { $, nf, esc, niceMax } from "./util.js";
 import { whenSeen } from "./motion.js";
 
 export function barChart(el, cols, opt) {
-  const W = Math.max(280, el.clientWidth || 340), H = 190, L = 40, R = 6, T = 12, B = 24;
+  const W = Math.max(280, el.clientWidth || 340), H = 204, L = 40, R = 6, T = 26, B = 24;
   const sig = JSON.stringify([cols, opt.sel, W]);
   if (el._sig === sig) return;
   el._sig = sig;
@@ -30,6 +30,10 @@ export function barChart(el, cols, opt) {
       const r = top ? Math.min(4, h) : 0;
       g += `<path d="M${x},${yy + h}V${yy + r}q0,${-r} ${r},${-r}H${x + bw - r}q${r},0 ${r},${r}V${yy + h}z" class="bar" style="--i:${i}" fill="var(${s.color})" opacity="${opt.sel == null || opt.sel === i ? 1 : 0.45}"/>`;
     });
+    if (opt.sel === i && acc > 0) {
+      const lx = Math.min(Math.max(cx, L + 34), W - R - 34);
+      g += `<text x="${lx}" y="${y(acc) - 9}" text-anchor="middle" class="val">${nf(Math.round(acc))}${opt.unit ? " " + opt.unit : ""}</text>`;
+    }
     if (!cols.some((cc) => cc.label.length > 3) || cols.length <= 8 || i % 2 === 0) g += `<text x="${cx}" y="${H - 7}" text-anchor="middle" class="${opt.sel === i ? "val" : ""}">${esc(c.label)}</text>`;
     g += `<rect data-i="${i}" x="${L + slot * i}" y="${T}" width="${slot}" height="${H - T}" fill="transparent" style="cursor:pointer"/>`;
   });
