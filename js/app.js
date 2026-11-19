@@ -120,15 +120,32 @@ export function render() {
 }
 
 export function renderTable(R, P) {
-  $("tblCount").textContent = R.length ? R.length + " záznamů" : "";
-  if (!R.length) { $("tbl").innerHTML = `<tr><td style="text-align:left">${state.loaded ? "Zatím žádný odečet." : "Načítám…"}</td></tr>`; return; }
-  const byTo = new Map(P.map((p) => [p.to, p]));
-  let h = "<thead><tr><th>Datum</th><th>T1</th><th>T2</th><th>kWh</th><th>Kč</th><th></th></tr></thead><tbody>";
+  $("tblCount").textContent = R.length ? R.length + " záznamů · klepnutím odečet upravíte" : "";
+  if (!R.length) { setHTML($("tbl"), `<section class="card"><p>${state.loaded ? "Zatím žádný odečet." : "Načítám…"}</p></section>`); return; }
+  const byTo = new Map(P.map((p, i) => [p.to, { p, prev: P[i - 1] }]));
+  const max = Math.max(1, ...P.map((p) => p.kwh));
+  let h = "";
   for (const r of [...R].reverse()) {
-    const p = byTo.get(r.date);
-    h += `<tr><td class="strong">${fmtDate(r.date, true).replace(/ /g, "")}</td><td>${nf(r.t1)}</td><td>${nf(r.t2)}</td><td>${p ? nf(p.kwh) : "–"}</td><td class="strong">${p ? nf(Math.round(p.cost)) : "–"}</td><td><button class="linkbtn" type="button" data-edit="${esc(r.date)}">Upravit</button></td></tr>`;
+    const [y, m, d] = r.date.split("-").map(Number);
+    const hit = byTo.get(r.date), p = hit && hit.p;
+    let delta = "";
+    if (p && hit.prev) {
+      const ch = (p.perDay / hit.prev.perDay - 1) * 100;
+      delta = `<span class="delta">${ch >= 0 ? "▲" : "▼"} ${nf(Math.abs(ch))} %</span>`;
+    }
+    h += `<button class="card rrow" type="button" data-edit="${esc(r.date)}" aria-label="Upravit odečet z ${fmtDate(r.date, true)}">
+      <span class="rr-top">
+        <span class="rr-date"><b>${d}</b><span>${MONTHS[m - 1]} ${y}</span></span>
+        <span class="rr-main">${p
+          ? `<span class="rr-kwh num">${nf(p.kwh)} <small>kWh</small></span><span class="rr-sub num">${kc(p.cost)} · ${p.days} dní · ${nf(p.perDay, 1)} kWh/den</span>`
+          : `<span class="rr-kwh">Výchozí stav</span><span class="rr-sub">První odečet, od něj se počítá.</span>`}</span>
+        ${delta}
+      </span>
+      ${p ? `<span class="rr-bar" aria-hidden="true"><span style="width:${(p.d2 / max * 100).toFixed(1)}%;background:var(--t2)"></span><span style="width:${Math.max(p.d1 / max * 100, 0.8).toFixed(1)}%;background:var(--t1)"></span></span>` : ""}
+      <span class="rr-foot num"><span><i class="dot t1"></i>T1 ${nf(r.t1)}</span><span><i class="dot t2"></i>T2 ${nf(r.t2)}</span><span class="rr-edit">Upravit ›</span></span>
+    </button>`;
   }
-  $("tbl").innerHTML = h + "</tbody>";
+  setHTML($("tbl"), h);
 }
 
 export function renderInvest(M, s, nP) {
@@ -226,7 +243,7 @@ export async function boot() {
     try { await state.db.collection("readings").doc(sheet.editing).delete(); closeSheet(); }
     catch (e) { setStatus("err", "Smazání se nepovedlo. Zkuste to znovu."); }
   };
-  $("tbl").onclick = (e) => { const d = e.target.dataset ? e.target.dataset.edit : null; if (d) { const r = state.readings.find((x) => x.date === d); if (r) openSheet("manual", r); } };
+  $("tbl").onclick = (e) => { const b = e.target.closest ? e.target.closest("[data-edit]") : null; const d = b ? b.dataset.edit : null; if (d) { const r = state.readings.find((x) => x.date === d); if (r) openSheet("manual", r); } };
   for (const id of ["sP1", "sP2", "sFix", "sAdv", "sWood", "sHyd", "sChim"]) $(id).onchange = saveSettings;
   const topBar = document.querySelector(".top");
   window.addEventListener("scroll", () => topBar.classList.toggle("scrolled", window.scrollY > 4), { passive: true });
