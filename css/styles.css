@@ -907,6 +907,7 @@ body::after {
   justify-content: space-between;
   gap: 8px;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 :is(.card, .register) {
@@ -1561,10 +1562,6 @@ body::after {
   to {
     box-shadow: 0 0 0 20px rgb(120 225 170 / 0);
   }
-}
-
-.register .foot {
-  align-items: center;
 }
 
 .register .foot .linkbtn {

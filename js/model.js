@@ -102,7 +102,7 @@ export function invest(M, s) {
     const yLo = net > 0 ? lo / net : Infinity, yHi = net > 0 ? hi / net : Infinity, yMid = net > 0 ? mid / net : Infinity;
     const verdict = yMid <= t.life * 0.65 ? "good" : yMid <= t.life ? "warn" : "bad";
     return { ...t, lo, hi, extra, net, yLo, yHi, yMid, verdict };
-  }).sort((a, b) => a.yMid - b.yMid);
+  }).sort((a, b) => a.yMid / a.life - b.yMid / b.life || a.yMid - b.yMid);
 }
 
 export function dueInfo() {
