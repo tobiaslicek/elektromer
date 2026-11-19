@@ -15,20 +15,29 @@ Běží jako Claude Artifact. Odečty ukládá do databáze artifactu a stav z f
 
 Hodnoty na obrázcích jsou vymyšlené.
 
+## Technologie
+
+React 19, TypeScript, Tailwind CSS 4 a Vite.
+
+```bash
+npm install
+npm run dev
+npm run build
+```
+
+`npm run build` zkontroluje typy, sestaví aplikaci do `dist/` a vytvoří `dist/artifact.html`, což je stránka, která se publikuje jako Claude Artifact spolu se soubory z `dist/assets/` a `dist/icons/`.
+
 ## Struktura
 
-| Soubor | Obsah |
+| Cesta | Obsah |
 |---|---|
-| `index.html` | kostra stránky |
-| `css/styles.css` | vzhled |
-| `js/app.js` | start, vykreslení obrazovek, záložky, nastavení |
-| `js/model.js` | výpočty spotřeby, výhledu a návratnosti |
-| `js/charts.js` | kreslení grafů do SVG |
-| `js/sheet.js` | formulář odečtu a čtení z fotky |
-| `js/motion.js` | úvodní obrazovka a animace |
-| `js/state.js` | stav aplikace a výchozí nastavení |
-| `js/util.js` | formátování čísel a dat |
-| `icons/` | ikony |
+| `src/App.tsx` | kostra aplikace, záložky, úvodní obrazovka |
+| `src/views/` | obrazovky Přehled, Odečty, Investice a Nastavení |
+| `src/components/` | sdílené prvky, grafy a formulář odečtu |
+| `src/lib/model.ts` | výpočty spotřeby, výhledu a návratnosti |
+| `src/lib/store.ts` | načítání a ukládání dat přes Clauda |
+| `src/lib/motion.ts` | animace a pozorování viditelnosti |
+| `src/lib/format.ts` | formátování čísel a dat |
+| `src/index.css` | téma Tailwindu a animace |
+| `public/icons/` | ikony |
 | `docs/` | obrázky do tohoto README |
-
-Bez build kroku, čisté ES moduly.
