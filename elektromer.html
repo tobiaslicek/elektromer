@@ -177,6 +177,64 @@ ol.plain { margin: 0; padding-left: 20px; display: flex; flex-direction: column;
 .row-btns { display: flex; gap: 10px; flex-wrap: wrap; }
 .row-btns .btn { flex: 1 1 140px; }
 .empty { text-align: center; padding: 26px 12px; color: var(--ink-2); display: flex; flex-direction: column; gap: 6px; }
+
+:root { --ease-out: cubic-bezier(0.23, 1, 0.32, 1); --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1); --ring: rgb(15 23 34 / 0.06); --shade: rgb(15 23 34 / 0.05); --glass: rgb(255 255 255 / 0.72); --glass-bg: rgb(238 241 245 / 0.72); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --ring: rgb(255 255 255 / 0.07); --shade: rgb(0 0 0 / 0.3); --glass: rgb(22 29 38 / 0.72); --glass-bg: rgb(12 17 23 / 0.72); } }
+:root[data-theme="dark"] { --ring: rgb(255 255 255 / 0.07); --shade: rgb(0 0 0 / 0.3); --glass: rgb(22 29 38 / 0.72); --glass-bg: rgb(12 17 23 / 0.72); }
+
+body { --gl: max(16px, env(safe-area-inset-left, 0px)); --gr: max(16px, env(safe-area-inset-right, 0px)); -webkit-tap-highlight-color: transparent; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 16; background: var(--bg); }
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 15; margin: -14px calc(-1 * var(--gr)) -4px calc(-1 * var(--gl)); padding: 12px var(--gr) 10px var(--gl);
+  background: var(--glass-bg); -webkit-backdrop-filter: blur(20px) saturate(180%); backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid transparent; transition: border-color 200ms ease; }
+.top.scrolled { border-bottom-color: var(--line); }
+.tabs { background: var(--glass); -webkit-backdrop-filter: blur(20px) saturate(180%); backdrop-filter: blur(20px) saturate(180%); }
+
+.card, .register { border: 1px solid transparent; box-shadow: 0 0 0 1px var(--ring), 0 1px 2px var(--shade), 0 8px 24px -12px var(--shade); }
+
+.btn, .tab, .seg button, .linkbtn { transition: scale 150ms ease-out, background-color 150ms ease, color 150ms ease, opacity 150ms ease; }
+.btn:not(:disabled):active, .tab:active, .seg button:active { scale: 0.96; }
+.linkbtn:active { opacity: 0.6; }
+@media (hover: hover) and (pointer: fine) {
+  .btn:not(.primary):not(:disabled):hover, .tab:not([aria-current="page"]):hover { background-color: var(--bg); }
+  .btn.primary:not(:disabled):hover { opacity: 0.92; }
+  .linkbtn:hover { color: var(--ink); }
+}
+.spin { animation-duration: 0.6s; }
+
+.sheet-back { visibility: hidden; opacity: 0; pointer-events: none; transition: opacity 200ms ease, visibility 0s linear 260ms; overscroll-behavior: contain; }
+.sheet-back.open { visibility: visible; opacity: 1; pointer-events: auto; transition: opacity 250ms ease, visibility 0s; }
+.sheet { transform: translateY(100%); transition: transform 240ms var(--ease-out); overscroll-behavior: contain; box-shadow: 0 -12px 40px -8px rgb(0 0 0 / 0.35); padding-top: 6px; }
+.sheet-back.open .sheet { transform: translateY(0); transition: transform 460ms var(--ease-drawer); }
+.grab { align-self: stretch; display: flex; justify-content: center; padding: 8px 0 6px; touch-action: none; cursor: grab; }
+.grab::before { content: ""; width: 40px; height: 5px; border-radius: 3px; background: var(--axis); }
+
+@keyframes fade { from { opacity: 0; } }
+main.view { animation: fade 150ms ease-out; }
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes rise { from { opacity: 0; transform: translateY(12px); filter: blur(4px); } }
+  @keyframes roll { from { opacity: 0; transform: translateY(70%); } }
+  @keyframes grow { from { transform: scaleY(0.02); opacity: 0.3; } }
+  @keyframes draw { from { stroke-dashoffset: 1; } }
+  @keyframes pop { from { opacity: 0; transform: scale(0.5); } }
+  .app.first #v-prehled > .card { animation: rise 420ms var(--ease-out) both; }
+  .app.first #v-prehled > .card:nth-of-type(2) { animation-delay: 70ms; }
+  .app.first #v-prehled > .card:nth-of-type(3) { animation-delay: 140ms; }
+  .app.first #v-prehled > .card:nth-of-type(4) { animation-delay: 210ms; }
+  .app.first #v-prehled > .card:nth-of-type(5) { animation-delay: 280ms; }
+  .app.roll .digits i { animation: roll 520ms var(--ease-out) both; animation-delay: calc(var(--i) * 40ms); }
+  .chart svg.anim .bar { transform-box: fill-box; transform-origin: 50% 100%; animation: grow 560ms var(--ease-out) both; animation-delay: calc(var(--i) * 45ms + 120ms); }
+  .chart svg.anim .draw { stroke-dasharray: 1; animation: draw 800ms var(--ease-out) 120ms both; }
+  .chart svg.anim .pt { transform-box: fill-box; transform-origin: center; animation: pop 300ms var(--ease-out) both; animation-delay: calc(var(--i) * 90ms + 250ms); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sheet, .sheet-back.open .sheet { transition: none; }
+  .btn:not(:disabled):active, .tab:active, .seg button:active { scale: 1; }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .top { background: var(--bg); -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .tabs { background: var(--surface); -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
 </style>
 
 <div class="app">
@@ -302,8 +360,9 @@ ol.plain { margin: 0; padding-left: 20px; display: flex; flex-direction: column;
   <button class="tab" type="button" data-tab="nastaveni"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg>Nastavení</button>
 </div></nav>
 
-<div class="sheet-back" id="sheetBack" hidden>
+<div class="sheet-back" id="sheetBack">
   <form class="sheet" id="sheet" novalidate>
+    <div class="grab" id="grab" aria-hidden="true"></div>
     <h2 id="sheetTitle">Nový odečet</h2>
     <div class="status" id="sheetStatus" hidden></div>
     <div class="field"><label for="fDate">Datum odečtu</label><input type="date" id="fDate" required></div>
@@ -451,6 +510,11 @@ function niceMax(v) {
 
 function barChart(el, cols, opt) {
   const W = Math.max(280, el.clientWidth || 340), H = 190, L = 40, R = 6, T = 12, B = 24;
+  const sig = JSON.stringify([cols, opt.sel, W]);
+  if (el._sig === sig) return;
+  el._sig = sig;
+  const anim = el._ak !== opt.animKey;
+  el._ak = opt.animKey;
   const max = niceMax(Math.max(...cols.map((c) => c.segs.reduce((a, s) => a + s.v, 0))));
   const y = (v) => T + (H - T - B) * (1 - v / max);
   const slot = (W - L - R) / cols.length, bw = Math.min(34, slot * 0.62);
@@ -471,17 +535,29 @@ function barChart(el, cols, opt) {
       let h = Math.max(2, y0 - y1 - (k ? 2 : 0));
       const yy = y0 - (k ? 2 : 0) - h;
       const r = top ? Math.min(4, h) : 0;
-      g += `<path d="M${x},${yy + h}V${yy + r}q0,${-r} ${r},${-r}H${x + bw - r}q${r},0 ${r},${r}V${yy + h}z" fill="var(${s.color})" opacity="${opt.sel == null || opt.sel === i ? 1 : 0.45}"/>`;
+      g += `<path d="M${x},${yy + h}V${yy + r}q0,${-r} ${r},${-r}H${x + bw - r}q${r},0 ${r},${r}V${yy + h}z" class="bar" style="--i:${i}" fill="var(${s.color})" opacity="${opt.sel == null || opt.sel === i ? 1 : 0.45}"/>`;
     });
     if (!cols.some((cc) => cc.label.length > 3) || cols.length <= 8 || i % 2 === 0) g += `<text x="${cx}" y="${H - 7}" text-anchor="middle" class="${opt.sel === i ? "val" : ""}">${esc(c.label)}</text>`;
     g += `<rect data-i="${i}" x="${L + slot * i}" y="${T}" width="${slot}" height="${H - T}" fill="transparent" style="cursor:pointer"/>`;
   });
-  el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(opt.aria)}">${g}</svg>`;
+  el.innerHTML = `<svg class="${anim ? "anim" : ""}" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(opt.aria)}">${g}</svg>`;
+  settle(el, anim);
   wire(el, opt.onSel);
+}
+
+function settle(el, anim) {
+  if (!anim) return;
+  const svg = el.firstChild;
+  setTimeout(() => svg.classList.remove("anim"), 1600);
 }
 
 function lineChart(el, pts, opt) {
   const W = Math.max(280, el.clientWidth || 340), H = 170, L = 40, R = 16, T = 20, B = 24;
+  const sig = JSON.stringify([pts, opt.sel, W]);
+  if (el._sig === sig) return;
+  el._sig = sig;
+  const anim = el._ak !== opt.animKey;
+  el._ak = opt.animKey;
   const max = niceMax(Math.max(...pts.map((p) => p.v)));
   const y = (v) => T + (H - T - B) * (1 - v / max);
   const slot = (W - L - R) / pts.length;
@@ -492,15 +568,16 @@ function lineChart(el, pts, opt) {
     g += `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" stroke="var(${i ? "--line" : "--axis"})" stroke-width="1"/>`;
     g += `<text x="${L - 6}" y="${y(v) + 4}" text-anchor="end">${nf(v)}</text>`;
   }
-  if (pts.length > 1) g += `<polyline fill="none" stroke="var(--t2)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" points="${pts.map((p, i) => x(i) + "," + y(p.v)).join(" ")}"/>`;
+  if (pts.length > 1) g += `<polyline class="draw" pathLength="1" fill="none" stroke="var(--t2)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" points="${pts.map((p, i) => x(i) + "," + y(p.v)).join(" ")}"/>`;
   pts.forEach((p, i) => {
     const on = opt.sel === i;
-    g += `<circle cx="${x(i)}" cy="${y(p.v)}" r="${on ? 6 : 4.5}" fill="var(--t2)" stroke="var(--surface)" stroke-width="2"/>`;
+    g += `<circle class="pt" style="--i:${i}" cx="${x(i)}" cy="${y(p.v)}" r="${on ? 6 : 4.5}" fill="var(--t2)" stroke="var(--surface)" stroke-width="2"/>`;
     if (on) g += `<text x="${x(i)}" y="${y(p.v) - 11}" text-anchor="middle" class="val">${nf(p.v, 1)}</text>`;
     if (pts.length <= 8 || i % 2 === 0) g += `<text x="${x(i)}" y="${H - 7}" text-anchor="middle" class="${on ? "val" : ""}">${esc(p.label)}</text>`;
     g += `<rect data-i="${i}" x="${L + slot * i}" y="0" width="${slot}" height="${H}" fill="transparent" style="cursor:pointer"/>`;
   });
-  el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(opt.aria)}">${g}</svg>`;
+  el.innerHTML = `<svg class="${anim ? "anim" : ""}" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(opt.aria)}">${g}</svg>`;
+  settle(el, anim);
   wire(el, opt.onSel);
 }
 
@@ -512,7 +589,9 @@ function wire(el, onSel) {
 
 function digits(el, n) {
   const s = n == null ? "––––––" : String(Math.round(n)).padStart(6, "0");
-  el.innerHTML = [...s].map((ch) => `<i>${ch}</i>`).join("") + "<em>kWh</em>";
+  if (el._s === s) return;
+  el._s = s;
+  el.innerHTML = [...s].map((ch, i) => `<i style="--i:${i}">${ch}</i>`).join("") + "<em>kWh</em>";
 }
 
 function dueInfo() {
@@ -566,13 +645,13 @@ function render() {
     const selB = state.sel.bar != null && state.sel.bar < PB.length ? state.sel.bar : PB.length - 1;
     const kcMode = state.unit === "kc";
     barChart($("barChart"), PB.map((q) => ({ label: lab(q), segs: [{ v: kcMode ? q.c2 : q.d2, color: "--t2" }, { v: kcMode ? q.c1 : q.d1, color: "--t1" }] })),
-      { sel: selB, aria: "Spotřeba za jednotlivá období podle tarifu", onSel: (i) => { state.sel.bar = i; render(); } });
+      { sel: selB, animKey: state.unit, aria: "Spotřeba za jednotlivá období podle tarifu", onSel: (i) => { state.sel.bar = i; render(); } });
     const q = PB[selB];
     $("barRead").innerHTML = `<b>${fmtDate(q.from)} až ${fmtDate(q.to, true)}</b> · ${q.days} dní<br><span class="num">T2 ${nf(q.d2)} kWh (${kc(q.c2)}) · T1 ${nf(q.d1)} kWh (${kc(q.c1)}) · celkem <b>${nf(q.kwh)} kWh, ${kc(q.cost)}</b></span>`;
     void off;
 
     const selD = state.sel.day != null && state.sel.day < PB.length ? state.sel.day : PB.length - 1;
-    lineChart($("dayChart"), PB.map((q2) => ({ label: lab(q2), v: q2.perDay })), { sel: selD, aria: "Průměrná denní spotřeba v kWh", onSel: (i) => { state.sel.day = i; render(); } });
+    lineChart($("dayChart"), PB.map((q2) => ({ label: lab(q2), v: q2.perDay })), { sel: selD, animKey: "d", aria: "Průměrná denní spotřeba v kWh", onSel: (i) => { state.sel.day = i; render(); } });
     const qd = PB[selD];
     $("dayRead").innerHTML = `<b>${fmtDate(qd.from)} až ${fmtDate(qd.to, true)}</b><br><span class="num">${nf(qd.perDay, 1)} kWh za den · ${kc(qd.cost / qd.days)} za den</span>`;
 
@@ -592,7 +671,7 @@ function render() {
     const F = forecast(M, last.date);
     if (F.length) {
       const selF = state.sel.fc != null ? state.sel.fc : 0;
-      barChart($("fcChart"), F.map((f) => ({ label: MONTHS[f.m], segs: [{ v: f.kwh, color: "--forecast" }] })), { sel: selF, aria: "Odhad spotřeby na dalších 12 měsíců", onSel: (i) => { state.sel.fc = i; render(); } });
+      barChart($("fcChart"), F.map((f) => ({ label: MONTHS[f.m], segs: [{ v: f.kwh, color: "--forecast" }] })), { sel: selF, animKey: "f", aria: "Odhad spotřeby na dalších 12 měsíců", onSel: (i) => { state.sel.fc = i; render(); } });
       const f = F[selF];
       $("fcRead").innerHTML = `<b>${MONTHS_FULL[f.m]} ${f.y}</b><br><span class="num">odhad ${nf(Math.round(f.kwh / 10) * 10)} kWh · asi ${kc(Math.round(f.cost / 10) * 10)}</span>`;
       $("fcNote").textContent = "Odhad v kWh. Vychází ze spotřeby mimo topení a z toho, jak se v Česku běžně dělí topná sezóna mezi měsíce. Podíl topné sezóny pokrytý odečty: " + nf(Math.min(M.share, 1) * 100) + " %. S každým zimním odečtem se zpřesní.";
@@ -712,9 +791,9 @@ function openSheet(mode, reading) {
   setStatus(null, "");
   if (mode === "manual" && !reading && !(state.sample && state.canImages) && state.loaded) setStatus(null, "Čtení z fotky tady není dostupné. Opište stav z displeje.");
   sheetCalc();
-  $("sheetBack").hidden = false;
+  $("sheet").style.transform = ""; $("sheet").style.transition = ""; $("sheetBack").classList.add("open");
 }
-function closeSheet() { $("sheetBack").hidden = true; if (sheet.ctl) sheet.ctl.abort(); }
+function closeSheet() { $("sheet").style.transform = ""; $("sheet").style.transition = ""; $("sheetBack").classList.remove("open"); if (document.activeElement && $("sheet").contains(document.activeElement)) document.activeElement.blur(); if (sheet.ctl) sheet.ctl.abort(); }
 
 const SAMPLE_COPY = {
   not_granted: "Čtení z fotky není povolené. Opište stav z displeje ručně.",
@@ -811,6 +890,36 @@ async function boot() {
   };
   $("tbl").onclick = (e) => { const d = e.target.dataset ? e.target.dataset.edit : null; if (d) { const r = state.readings.find((x) => x.date === d); if (r) openSheet("manual", r); } };
   for (const id of ["sP1", "sP2", "sFix", "sWood", "sHyd", "sChim"]) $(id).onchange = saveSettings;
+  const topBar = document.querySelector(".top");
+  window.addEventListener("scroll", () => topBar.classList.toggle("scrolled", window.scrollY > 4), { passive: true });
+  const grab = $("grab"), sh = $("sheet");
+  let drag = null;
+  const rubber = (o, d) => (o * d * 0.55) / (d + 0.55 * Math.abs(o));
+  grab.addEventListener("pointerdown", (e) => {
+    if (drag) return;
+    grab.setPointerCapture(e.pointerId);
+    drag = { id: e.pointerId, y0: e.clientY, dy: 0, hist: [{ y: e.clientY, t: e.timeStamp }] };
+    sh.style.transition = "none";
+  });
+  grab.addEventListener("pointermove", (e) => {
+    if (!drag || e.pointerId !== drag.id) return;
+    const raw = e.clientY - drag.y0;
+    drag.dy = raw >= 0 ? raw : -rubber(-raw, 160);
+    drag.hist.push({ y: e.clientY, t: e.timeStamp });
+    if (drag.hist.length > 5) drag.hist.shift();
+    sh.style.transform = "translateY(" + drag.dy + "px)";
+  });
+  const endDrag = (e) => {
+    if (!drag || e.pointerId !== drag.id) return;
+    const a = drag.hist[0], b = drag.hist[drag.hist.length - 1];
+    const v = b.t > a.t ? (b.y - a.y) / (b.t - a.t) : 0;
+    const dy = drag.dy;
+    drag = null;
+    sh.style.transition = "";
+    if (v > 0.5 || (dy > 120 && v > -0.1)) closeSheet(); else sh.style.transform = "";
+  };
+  grab.addEventListener("pointerup", endDrag);
+  grab.addEventListener("pointercancel", endDrag);
   let rt; window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(render, 150); });
 
   const c = window.claude;
@@ -828,6 +937,9 @@ async function boot() {
   db.collection("readings").onSnapshot((snap) => {
     state.readings = snap.docs.map((d) => d.data()).filter((r) => r && /^\d{4}-\d{2}-\d{2}$/.test(r.date) && Number.isFinite(r.t1) && Number.isFinite(r.t2))
       .map((r) => ({ date: r.date, t1: r.t1, t2: r.t2 })).sort((a, b) => (a.date < b.date ? -1 : 1));
+    const app = document.querySelector(".app");
+    if (!state.loaded) { app.classList.add("first"); setTimeout(() => app.classList.remove("first"), 1400); }
+    app.classList.add("roll"); clearTimeout(state.rollT); state.rollT = setTimeout(() => app.classList.remove("roll"), 1400);
     state.loaded = true;
     if (!snap.metadata || !snap.metadata.fromCache) { clearTimeout(slow); notice(""); }
     render();
