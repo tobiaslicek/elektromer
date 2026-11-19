@@ -794,7 +794,7 @@ body::after {
   top: env(safe-area-inset-top, 0px);
   z-index: 15;
   margin: -16px calc(-1 * var(--gr)) 0 calc(-1 * var(--gl));
-  padding: 16px var(--gr) 14px var(--gl);
+  padding: 28px var(--gr) 16px var(--gl);
   background: var(--glass-bg);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   backdrop-filter: blur(20px) saturate(180%);
@@ -820,7 +820,7 @@ body::after {
   background: none;
   border: 0;
   padding: 0;
-  margin-top: 14px;
+  margin-top: 24px;
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
 }
