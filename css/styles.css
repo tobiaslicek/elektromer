@@ -1222,8 +1222,8 @@ body::after {
 
 .hd, .tech-top {
   border-radius: 16px;
-  padding: 18px 20px 18px 18px;
-  min-height: 116px;
+  padding: 8px 20px 8px 18px;
+  min-height: 0;
   margin: -12px -8px 2px;
   color: #eef1f4;
   gap: 18px;
