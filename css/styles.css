@@ -580,17 +580,39 @@ ol.plain {
 .check {
   display: flex;
   gap: 12px;
-  align-items: flex-start;
+  align-items: center;
   font-size: 14px;
   line-height: 1.45;
   padding: 4px 0;
 }
 
 .check input {
-  width: 20px;
-  height: 20px;
-  margin-top: 1px;
+  -webkit-appearance: none;
+  appearance: none;
   flex: none;
+  width: 28px;
+  height: 28px;
+  margin: 0;
+  border-radius: 9px;
+  background: var(--well) center / 18px 18px no-repeat;
+  box-shadow: inset 0 0 0 1.5px var(--axis);
+  cursor: pointer;
+  transition: background-color 150ms ease, box-shadow 150ms ease, scale 150ms ease-out;
+}
+
+.check input:checked {
+  background-color: #121a21;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none' stroke='%23a6e3b8' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 9.5l3.2 3.2L14 5.8'/%3E%3C/svg%3E");
+  box-shadow: none;
+}
+
+.check input:active {
+  scale: 0.92;
+}
+
+.check input:focus-visible {
+  outline: 2px solid #121a21;
+  outline-offset: 2px;
 }
 
 .status {
