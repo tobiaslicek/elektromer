@@ -806,7 +806,7 @@ body::after {
 .top-row {
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
+  justify-content: center;
   gap: 16px;
 }
 
@@ -1721,4 +1721,9 @@ body::after {
   :root:not([data-theme="light"]) :is(.top h1 b, #splash b span) {
     color: #a6e3b8;
   }
+}
+
+
+.top .next:empty {
+  display: none;
 }
